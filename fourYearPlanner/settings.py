@@ -1,10 +1,13 @@
 # Django settings for fourYearPlanner project.
+import os.path
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
+    ('Travis Beatty', 'travisby@gmail.com'),
+    ('Kevin Pietrow', 'kpietrow@gmail.com'),
 )
 
 MANAGERS = ADMINS
