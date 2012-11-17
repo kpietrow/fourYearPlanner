@@ -15,3 +15,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 )
+
+
+# ListView, list of objects. while executing, self.object_list will contain list of objects
+
+# DetailView, page representing individual object. while executing, self.object will contain object being
+# operated on
