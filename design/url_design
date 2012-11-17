@@ -1,0 +1,24 @@
+/
+    classes/
+        ListView of classes
+        Page that lets you choose to search class requirements by major
+    sections/
+        ListView sections for chosen Semester
+        ListView classes you need to take
+            major + minor requirements
+            visually display classes already taken
+        DetailView of a section
+                eligibility to register
+                    if ineligible, why
+                seats full / max
+        ListView of sections by classID
+        Page that lets you choose to search sections by major
+        register
+            cannot register for past semesters
+            MUST check for conflicts
+            MUST check for prereqs
+            MUST check class is not full
+            CAN register
+            CAN'T REGISTER FOR THE SAME CLASS TWICE!!!!!!!!!!!!
+            send a signal so we can text0rz everyb0dz
+        "watch" or "track" section
