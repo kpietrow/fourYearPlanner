@@ -9,7 +9,7 @@ def register(request):
 
     
 
-def track(request):
+def track_section(request):
     """Track section"""
     
 
@@ -22,5 +22,13 @@ def courses_by_major_id(request, major_id):
 
 def courses_by_minor_id(request, minor_id):
     """Look up minor courses by its ID"""
-    response = HttpResponse(Course.objects.filer(minor_id__exact=minor_id))
+    response = HttpResponse(Course.objects.filter(minor_id__exact=minor_id))
     return response
+
+def all_courses(request, major_id, minor_id):
+    """Look up all courses for major and minor"""
+    response = Course.objects.filter(minor_id__exact=minor_id) + Course.objects.filter(major_id__exact=major_id)
+    response = set(response)
+    response = HttpResponse(response)
+    return response
+
