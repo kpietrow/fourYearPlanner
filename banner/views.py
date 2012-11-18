@@ -9,9 +9,9 @@ def register(request):
 
     
 
-def track_section(request):
+def track_section(request, section_id):
     """Track section"""
-    
+    new_update = User_Section_Track..update(
 
 
 def courses_by_major_id(request, major_id):
