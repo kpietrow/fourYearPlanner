@@ -13,42 +13,46 @@ def track_section(request, user_name, section_id):
     return HttpResponse('Your course tracking has been successfully activated.')
 
 
-def courses_by_major(request):
+def courses_major_reqs(request):
     """Look up major courses"""
     try:
         courses_by_major = []
         for major in Major.objects.all():
-            courses = Course.objects.filter(major_id__exact=major.pk)
-            courses.prereq = [x.name for x in courses.prerequisite_set]
-            courses_by_major.append(courses)
+            courses = []
+            for course in Course.objects.filter(major_id__exact = major.pk):
+                course.prereq = [x.course.name for x in course.major_requirement_set.all()]
+            courses.append(course)
+        courses_by_major.append(courses)
 
         return render(
             request,
-            template_name='sections/degree_reqs.html',
+            template_name='course/degree_reqs.html',
             dictionary={
-                'degree': courses,
-                'location': 'prereqs.html'
+                'degree': courses_by_major,
+                'location': 'course/degree_reqs.html'
             }
         )
     except ValueError:
         raise Http404()
 
 
-def courses_by_minor(request):
+def courses_minor_reqs(request):
     """Look up minor courses by its ID"""
     try:
         courses_by_minor = []
+        courses = []
         for minor in Minor.objects.all():
-            courses = Course.objects.filter(minor_id__exact=minor.pk)
-            courses.prereq = [x.name for x in courses.prerequisite_set]
-            courses_by_minor.append(courses)
-
+            courses = []
+            for course in Course.objects.filter(minor_id__exact = minor.pk):
+                course.prereq = [x.course.name for x in course.minor_requirement_set.all()]
+            courses.append(course)
+        courses_by_minor.append(courses)
         return render(
             request,
-            template_name='sections/degree_reqs.html',
+            template_name='course/degree_reqs.html',
             dictionary={
-                'degree': courses,
-                'location': 'prereqs'
+                'degree': courses_by_minor,
+                'location': 'course/degree_reqs.html'
             }
         )
     except ValueError:
