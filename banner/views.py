@@ -40,17 +40,10 @@ def sections_by_semester(request, semester_id):
     return response
 
 
-def register_for_class(request, section):
-    if request.method == 'POST':
-        form = Registration(request.POST)
-        if form.is_valid():
-            section = Section.get(pk=form.cleaned_data['section'])
-            if request.user.can_register(section):
-                request.user.add(section)
-            else:
-                return HttpResponse("ERROR")
-            return HttpResponseRedirect('/')  # Redirect after POST
+def register_for_class(request, section_id):
+    section = Section.get(pk=section_id)
+    if request.user.can_register(section):
+        request.user.add(section)
     else:
-        form = Registration(section)  # An unbound form
-
-        return render(request, 'contact.html', {'form': form})
+        return HttpResponse("ERROR")
+    return HttpResponseRedirect('/')  # Redirect after POST
