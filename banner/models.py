@@ -49,7 +49,7 @@ class Professor(models.Model):
 
 class Semester(models.Model):
     """Semester"""
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
 
 
 class Section(models.Model):
@@ -71,5 +71,6 @@ class Section_Time(models.Model):
 
 class User_Section_Track(models.Model):
     """User tracking"""
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
+    section = models.CharField(max_length=20)
 

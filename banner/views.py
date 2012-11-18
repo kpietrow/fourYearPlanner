@@ -3,15 +3,16 @@ from banner.models import Course, Section, Major, Minor, Professor, User_section
 from django.http import HttpResponse
 from django.views.generic import ListView
 
-def register(request):
+def register(request, course_id, section_id):
     """Register for a class"""
     
 
     
 
-def track_section(request, section_id):
+def track_section(request, user_name, section_id):
     """Track section"""
-    new_update = User_Section_Track..update(
+    new_update = User_Section_Track(name=user_name, section=section_id)
+    new_update.save()
 
 
 def courses_by_major_id(request, major_id):
