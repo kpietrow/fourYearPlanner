@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from banner.models import Course, Section
-from banner.views import Section_Detail_View
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -22,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^sections/track/$', 'banner.views.track_section'),
 
     # not sure if url is correct here
-    url(r'^(?P<slug>[-_\w)+)/$', Section_Detail_View.as_view(), name='article-detail'),
+    url(r'^sections/(?P<pk>\d+)/$', DetailView.as_view(model=Section, template_name='sections/dvSection.html')),
 
 
     # Uncomment the admin/doc line below to enable admin documentation:
