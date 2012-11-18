@@ -7,7 +7,7 @@
 {% block content %}
 
     <p>
-        {% for session in !course.isRestricted %}
+        {% for session in !course.is_restricted %}
 	        <a> {{course.id}} {{course.name}} {{section.professor}} <!-- Number of Students Enrolled --> /{{section.max_size}} {{section.semester}}
 	            <br>
 			</a>

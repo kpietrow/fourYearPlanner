@@ -7,7 +7,7 @@
 {% block content %}
 
     <p>
-	    {% for section_time in !course.isRestricted %}
+	    {% for section_time in !course.is_restricted %}
 		    <a>{{course.section.id}} {{course.section.name}} {{section.professor}} {{section_time.dayOfWeek}} {{section_time.startTime}} - {{section_time.endTime}}
                 <br>
 			</a>
