@@ -120,7 +120,7 @@ def can_register(self, section):
     majors = self.major_set.all()
     conditions = []
     conditions.append(section not in sections)
-    for prereq in section.course.requirement.all():
+    for prereq in section.course.course.all():
         conditions.append(prereq.requirement in [x.course for x in sections])
     if section.course.is_restricted:
         conditions.append(section.course.major in majors)
