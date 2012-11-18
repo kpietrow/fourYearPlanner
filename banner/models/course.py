@@ -1,10 +1,11 @@
-"""user section tracking for notifications"""
+"""Course"""
 from django.db import models
 
 
-class User_Section_Track(models.Model):
-    """User tracking"""
+class Course(models.Model):
+    """Course"""
     name = models.CharField(max_length=30)
+    is_restricted = models.BooleanField()
 
 
 class Meta:

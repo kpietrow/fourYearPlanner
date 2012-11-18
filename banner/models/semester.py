@@ -1,9 +1,9 @@
-"""user section tracking for notifications"""
+"""Semester"""
 from django.db import models
 
 
-class User_Section_Track(models.Model):
-    """User tracking"""
+class Semester(models.Model):
+    """Semester"""
     name = models.CharField(max_length=30)
 
 
