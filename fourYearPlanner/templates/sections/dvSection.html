@@ -6,18 +6,10 @@
 
 {% block content %}
 
-{% block links %}
-	    
-		<li><a href="index.html">Home</a></li>
-        <li><a href="lvCourses.html">View Requirements</a></li>
-        <li><a href="lvSections_cID.html">Register For Classes</a></li>
-	    <li><a href="degree_reqs.html">Class Search</a></li>
-	
-{% endblock %}
 
     <p>
         <a>
-            {{course.id}} {{course.name}} {{section.professor}} <!-- Number of Students Enrolled --> /{{section.max_size}} {{section.semester}}
+            {{course.id}} {{course.name}} {{section.professor}} {{section.user.user_count}}/{{section.max_size}} {{section.semester}}
         </a>
         <br>
     </p>

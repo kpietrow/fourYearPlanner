@@ -6,15 +6,6 @@
 
 {% block content %}
 
-{% block links %}
-	    
-		<li><a href="index.html">Home</a></li>
-        <li><a href="lvCourses.html">View Requirements</a></li>
-        <li class="active"><a href="lvSections_cID.html">Register For Classes</a></li>
-	    <li><a href="degree_reqs.html">Class Search</a></li>
-	
-{% endblock %}
-
     <p>
 	    {% for course.is_restricted not in section_time %}
 		    <a>{{course.section.id}} {{course.section.name}} {{section.professor}} {{section_time.dayOfWeek}} {{section_time.startTime}} - {{section_time.endTime}}
