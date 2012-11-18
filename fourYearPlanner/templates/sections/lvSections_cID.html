@@ -2,12 +2,12 @@
 <!-- sections/lvSections_cID.html -->
 {% extends 'base.html' %}
 
-{% block title %}Title{% endblock %}
+{% block title %}Papaya: Section Search{% endblock %}
 
 {% block content %}
 
     <p>
-	    {% for section_time in !course.is_restricted %}
+	    {% for course.is_restricted not in section_time %}
 		    <a>{{course.section.id}} {{course.section.name}} {{section.professor}} {{section_time.dayOfWeek}} {{section_time.startTime}} - {{section_time.endTime}}
                 <br>
 			</a>

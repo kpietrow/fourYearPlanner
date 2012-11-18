@@ -7,7 +7,7 @@
 {% block content %}
 
 <p>
-    {% for !course.is_restricted in ___ %}
+    {% for course.is_restricted not in course %}
         <a href="___">{{course.id}} {{course.name}}</a>
 	{% endfor %}
 </p>
