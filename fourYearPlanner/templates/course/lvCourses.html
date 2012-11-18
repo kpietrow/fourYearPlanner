@@ -6,10 +6,29 @@
 
 {% block content %}
 
+{% block links %}
+	    
+		<li><a href="">Home</a></li>
+        <li><a href="">View Requirements</a></li>
+        <li class="active"><a href="">Register For Classes</a></li>
+	    <li><a href="">Class Search</a></li>
+	
+	{% endblock &}
+
 <p>
-    {% for course.is_restricted not in course %}
-        <a href="___">{{course.id}} {{course.name}}</a>
-	{% endfor %}
+    <h2> Courses </h2>
+    <table class="table table-striped">
+	    <tr>
+	        <th> Major </th> <th> Course Name </th> <th> Credits </th> 
+	    </tr>
+	    {% for course in courses %}
+	        <tr>
+	            <td> {{course.major.name}} </td>
+		        <td> {{course.name}} </td>
+		        <td> {{course.credit}} </td>
+	        </tr>
+	    {% endfor %}
+	</table>
 </p>
    
 {% endblock %}
