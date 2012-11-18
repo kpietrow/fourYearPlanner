@@ -1,7 +1,7 @@
 /
     classes/
-        ListView of classes
-        Page that lets you choose to search class requirements by major (major_reqs)
+       X ListView of classes
+       X Page that lets you choose to search class requirements by major (major_reqs)
     sections/
         ListView sections for chosen Semester
         ListView classes you need to take
