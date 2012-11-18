@@ -7,7 +7,8 @@ class Major(models.Model):
     name = models.CharField(max_length=30)
     user = models.ManyToManyField(User)
 
-
+    def __unicode__(self):
+        return unicode(self.pk)
 
 
 class Course(models.Model):
@@ -16,11 +17,17 @@ class Course(models.Model):
     is_restricted = models.BooleanField()
     major = models.ForeignKey(Major)
 
+    def __unicode__(self):
+        return unicode(self.pk)
+
 
 class Major_Requirement(models.Model):
     """Major Reqs"""
     major = models.ForeignKey(Major)
     course = models.ForeignKey(Course)
+
+    def __unicode__(self):
+        return unicode(self.pk)
 
 
 class Minor(models.Model):
@@ -28,11 +35,17 @@ class Minor(models.Model):
     name = models.CharField(max_length=30)
     user = models.ManyToManyField(User)
 
+    def __unicode__(self):
+        return unicode(self.pk)
+
 
 class Minor_Requirement(models.Model):
     """Minor Reqs"""
     minor = models.ForeignKey(Minor)
     course = models.ForeignKey(Course)
+
+    def __unicode__(self):
+        return unicode(self.pk)
 
 
 class Phone(models.Model):
@@ -40,21 +53,33 @@ class Phone(models.Model):
     user = models.OneToOneField(User)
     phone = models.CharField(max_length=10)
 
+    def __unicode__(self):
+        return unicode(self.pk)
+
 
 class Prerequisite(models.Model):
     """Prerequisite"""
     course = models.ForeignKey(Course,related_name= 'course')
     requirement = models.ForeignKey(Course,related_name='requirement')
 
+    def __unicode__(self):
+        return unicode(self.pk)
+
 
 class Professor(models.Model):
     """Professor"""
     user = models.OneToOneField(User)
 
+    def __unicode__(self):
+        return unicode(self.pk)
+
 
 class Semester(models.Model):
     """Semester"""
     name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return unicode(self.pk)
 
 
 class Section(models.Model):
@@ -65,6 +90,9 @@ class Section(models.Model):
     professor = models.ForeignKey(Professor)
     user = models.ManyToManyField(User)
 
+    def __unicode__(self):
+        return unicode(self.pk)
+
 
 class Section_Time(models.Model):
     """Times"""
@@ -73,12 +101,17 @@ class Section_Time(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
 
+    def __unicode__(self):
+        return unicode(self.pk)
 
 
 class User_Section_Track(models.Model):
     """User tracking"""
     name = models.CharField(max_length=50)
     section = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return unicode(self.pk)
 
 
 def can_register(self, section):
