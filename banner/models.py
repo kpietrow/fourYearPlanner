@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.views.generic.detail import DetailView
 
 
 class Course(models.Model):
@@ -58,6 +59,16 @@ class Section(models.Model):
     course = models.ForeignKey(Course)
     semester = models.ForeignKey(Semester)
     professor = models.ForeignKey(Professor)
+
+class Section_Detail_View(DetailView):
+    model = Section
+    def get_context_data(self, **kwargs):
+        context = super(Section_Detail_View, self).get_context_data(**kwargs)
+        context['max_size'] = Section.max_size
+        context['course'] = Section.course
+        context['semester'] = Section.semester
+        context['professor'] = Section.professor
+        return context
 
 
 class Section_Time(models.Model):
