@@ -16,10 +16,12 @@
                 <div class="navbar-inner">
                     <a class="brand" href="#">&nbspPapaya</a>
                     <ul class="nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <li class="active"><a href="">View Requirements</a></li>
-                        <li class="active"><a href="">Register For Classes</a></li>
-					    <li class="active"><a href="">Class Search</a></li>
+					    {% block links %}
+                            <li><a href="/">Home</a></li>
+                            <li><a href="">View Requirements</a></li>
+                            <li><a href="">Register For Classes</a></li>
+					        <li><a href="">Class Search</a></li>
+						{% endblock %}
                     </ul>
 		            <form class="navbar-search pull-right">
                         <input type="text" class="search-query" placeholder="Search">
