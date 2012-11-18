@@ -80,3 +80,19 @@ class User_Section_Track(models.Model):
     name = models.CharField(max_length=50)
     section = models.CharField(max_length=20)
 
+
+def can_register(self, section):
+    # TODO optimize
+    sections = self.section_set.all()
+    majors = self.major_set.all()
+    conditions = []
+    conditions.append(section not in sections)
+    for prereq in section.course.requirement.all():
+        conditions.append(prereq.requirement in [x.course for x in sections])
+    if section.course.is_restricted:
+        conditions.append(section.course.major in majors)
+    if False in conditions:
+        return False
+    return True
+
+User.add_to_class('can_register', can_register)

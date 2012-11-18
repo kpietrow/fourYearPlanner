@@ -39,11 +39,16 @@ def sections_by_semester(request, semester_id):
     response = HttpResponse(Section.objects.filter(semester_id__exact=semester_id))
     return response
 
+def schedule(request):
+    return HttpResponse(Section.objects.filter(user__exact=request.user))
+
 
 def register_for_class(request, section_id):
-    section = Section.get(pk=section_id)
+    #return HttpResponse([f + '\n' for f in dir(request.user)])
+    section = Section.objects.get(pk=section_id)
     if request.user.can_register(section):
-        request.user.add(section)
+        request.user.section_set.add(section)
+        request.user.save()
     else:
         return HttpResponse("ERROR")
     return HttpResponseRedirect('/')  # Redirect after POST
