@@ -7,10 +7,12 @@
 
     {% block links %}
 
-        <li><a href="">Home</a></li>
-        <li class="active"><a href="">View Requirements</a></li>
-        <li><a href="">Register For Classes</a></li>
-	    <li><a href="">Class Search</a></li>
+        <{% block links %}
+	    
+		<li><a href="index.html">Home</a></li>
+        <li><a href="lvCourses.html">View Requirements</a></li>
+        <li><a href="lvSections_cID.html">Register For Classes</a></li>
+	    <li class="active"><a href="degree_reqs.html">Class Search</a></li>
 	
     {% endblock %}
 	
@@ -24,5 +26,7 @@
 		
       
     </ul>
+	
+	{% endblock %}
 
     
