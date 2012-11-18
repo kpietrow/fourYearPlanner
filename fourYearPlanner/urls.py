@@ -15,11 +15,12 @@ urlpatterns = patterns('',
     # index
     url(r'^$', 'banner.views.index'),
     # courses/<major,minor>_reqs/
-    url(r'^courses/major_reqs/(\d+)/$', 'banner.views.courses_by_major_id'),
-    url(r'^courses/minor_reqs/(\d+)/$', 'banner.views.courses_by_minor_id'),
+    url(r'^courses/major_reqs/$', 'banner.views.courses_major_reqs'),
+    url(r'^courses/minor_reqs/$', 'banner.views.courses_minor_reqs'),
     # courses/
-    url(r'^courses/$', ListView.as_view(model=Course, template_name='lvCourse.html')),
-    url(r'^courses/(?P<pk>\d+)/$', DetailView.as_view(model=Course, template_name='sections/dvCourse.html')),
+    url(r'^courses/$', ListView.as_view(model=Course, template_name='course/lvCourses.html')),
+    #url(r'^courses/d+/$', 'banner.views.search_by_course_id'),
+    url(r'^courses/(?P<course_id>\d+)$', 'banner.views.search_by_course_id'),
     # sections/
     url(r'^sections/$', ListView.as_view(model=Section, template_name='sections/lvSections_cID.html')),
     url(r'^sections/(?P<pk>\d+)/$', DetailView.as_view(model=Section, template_name='sections/dvSection.html')),
