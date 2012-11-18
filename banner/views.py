@@ -1,13 +1,13 @@
 # Create your views here.
-from banner.models import Course, Section, Major, Minor, Professor, User_section_track
+from banner.models import Course, Section, Major, Minor, Professor, User_Section_Track
 from django.http import HttpResponse
 from django.views.generic import ListView
 
 def register(request, course_id, section_id):
     """Register for a class"""
-    
 
-    
+
+
 
 def track_section(request, user_name, section_id):
     """Track section"""

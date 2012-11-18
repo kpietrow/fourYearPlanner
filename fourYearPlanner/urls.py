@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import ListView
 from banner.models import Course, Section
-from benner.views import Section_Detail_View
+from banner.views import Section_Detail_View
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
