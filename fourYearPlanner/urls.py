@@ -17,7 +17,6 @@ urlpatterns = patterns('',
     url(r'^courses/Sections_by_semester/\d+/$', 'banner.view.sections_by_semester'),
     url(r'^sections/Section/$', ListView.as_view(model=Section,)),
     url(r'^courses/AllCourses/$', 'banner.view.all_courses'),
-    url(r'^sections/Section/$', DetailView.as_view(), name='section-detail'),
     url(r'^sections/register/$', 'banner.views.register'),                   
     url(r'^sections/track/$', 'banner.views.track_section'),
     
