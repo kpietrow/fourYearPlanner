@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <!-- sections/dvSection.html -->
+<html>
 {% extends 'base.html' %}
 
 {% block title %}Papaya: Section Search{% endblock %}
 
+<body>
 {% block content %}
 
 {% block links %}
@@ -16,10 +18,34 @@
 {% endblock %}
 
     <p>
-        <a>
-            {{course.id}} {{course.name}} {{section.professor}} <!-- Number of Students Enrolled --> /{{section.max_size}} {{section.semester}}
-        </a>
+        <!-- <a>
+            {{section.course.id}} {{section.name}} {{section.professor}} <!-- Number of Students Enrolled --> /{{section.max_size}} {{section.semester}}
+        </a> -->
         <br>
+        <h3>Section:</h3>
+        <table>
+        <tr>
+        	<th>Name</th>
+        	<th>ID</th>
+        	<th>Major</th>
+        	<th>Professor</th>
+        	<th>Time</th>
+        	<th>Availability<th>
+        	<th>Credits</th>
+        </tr>
+        <tr>
+        	<td>{{section.name}}</td>
+        	<td>{{section.course.id}}</td>
+        	<td>{{section.course.major}}</td>
+        	<td>{{section.professor}}</td>
+        	<td>{{section.semester}}</td>
+        	<td>{{section. }} / {{section.max_size}}</td>
+        	<td>{{section.credits}}</td>
+        </tr>
+        </table>
+        	
     </p>
 
 {% endblock %}
+</body>
+</html>
