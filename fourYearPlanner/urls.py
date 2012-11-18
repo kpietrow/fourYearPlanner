@@ -11,8 +11,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'fourYearPlanner.views.home', name='home'),
     # url(r'^fourYearPlanner/', include('fourYearPlanner.foo.urls')),
- git
- #   url(r'^courses/$', ListView.as_view(model=Course,)),
+    #   url(r'^courses/$', ListView.as_view(model=Course,)),
     url(r'^courses/by_major/\d+/$', 'banner.view.courses_by_major_id'),
     url(r'^courses/by_minor/\d+/$', 'banner.view.courses_by_minor_id'),
     url(r'^courses/Sections_by_semester/\d+/$', 'banner.view.sections_by_semester'),
