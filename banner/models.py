@@ -1,17 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.views.generic.detail import DetailView
+
+
+class Major(models.Model):
+    """Major"""
+    name = models.CharField(max_length=30)
+    user = models.ManyToManyField(User)
+
+
 
 
 class Course(models.Model):
     """Course"""
     name = models.CharField(max_length=30)
     is_restricted = models.BooleanField()
-
-
-class Major(models.Model):
-    """Major"""
-    name = models.CharField(max_length=30)
+    major = models.ForeignKey(Major)
 
 
 class Major_Requirement(models.Model):
@@ -23,6 +26,7 @@ class Major_Requirement(models.Model):
 class Minor(models.Model):
     """Minor"""
     name = models.CharField(max_length=30)
+    user = models.ManyToManyField(User)
 
 
 class Minor_Requirement(models.Model):
@@ -59,16 +63,7 @@ class Section(models.Model):
     course = models.ForeignKey(Course)
     semester = models.ForeignKey(Semester)
     professor = models.ForeignKey(Professor)
-
-class Section_Detail_View(DetailView):
-    model = Section
-    def get_context_data(self, **kwargs):
-        context = super(Section_Detail_View, self).get_context_data(**kwargs)
-        context['max_size'] = Section.max_size
-        context['course'] = Section.course
-        context['semester'] = Section.semester
-        context['professor'] = Section.professor
-        return context
+    user = models.ManyToManyField(User)
 
 
 class Section_Time(models.Model):
