@@ -3,19 +3,19 @@ from banner.models import Course, Section, Major, Minor, Professor, User_Section
 from django.http import HttpResponse
 from django.views.generic import ListView
 
-def register(request, course_id, semester_id, professor):
-    """Register for a class"""
-    if 
-        new_course = Section.objects.get(id=1)
-        e = new_course=entry_set.create(
-            course=course_is,
-            semester=semester_id
-            professor=professor_id
-            )
+#def register(request, course_id, semester_id, professor):
+#    """Register for a class"""
+#    if 
+#        new_course = Section.objects.get(id=1)
+#        e = new_course=entry_set.create(
+#            course=course_is,
+#            semester=semester_id
+#            professor=professor_id
+#            )
 
 def hello(request):
     """Test"""
-    print 'Hello World!'
+    return HttpResponse('Hello World!')
 
 def track_section(request, user_name, section_id):
     """Track section"""

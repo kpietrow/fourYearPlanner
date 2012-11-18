@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'fourYearPlanner.views.home', name='home'),
     # url(r'^fourYearPlanner/', include('fourYearPlanner.foo.urls')),
 
-    url(r'^hello/$', 'banner.view.hello'),
+    url(r'^hello/$', 'banner.views.hello'),
 
     url(r'^courses/$', ListView.as_view(model=Course)),
     url(r'^courses/by_major/\d+/$', 'banner.views.courses_by_major_id'),
