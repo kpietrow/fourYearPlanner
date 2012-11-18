@@ -1,6 +1,6 @@
 # Create your views here.
 from banner.models import Course, Section, Major, Minor, Professor, User_Section_Track
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.views.generic import ListView
 
 #def register(request, course_id, semester_id, professor):
@@ -21,13 +21,16 @@ def track_section(request, user_name, section_id):
     """Track section"""
     new_update = User_Section_Track(name=user_name, section=section_id)
     new_update.save()
-    return HttpResponse
+    return HttpResponse('Your course tracking has been successfully activated.')
 
 
 def courses_by_major_id(request, major_id):
     """Look up major courses by its ID"""
-    response = HttpResponse(Course.objects.filter(major_id__exact=major_id))
-    return response
+    try:
+        response = HttpResponse(Course.objects.filter(major_id__exact=major_id))
+        return response
+    except ValueError:
+        raise Http404()
 
 
 def courses_by_minor_id(request, minor_id):
