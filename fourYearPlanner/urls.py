@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     # url(r'^fourYearPlanner/', include('fourYearPlanner.foo.urls')),
 
     url(r'^hello/$', 'banner.views.hello'),
+    url(r'^login/$', 'django.contrib.auth.views.login'),
 
     url(r'^courses/$', ListView.as_view(model=Course)),
     url(r'^courses/by_major/(\d+)/$', 'banner.views.courses_by_major_id'),
@@ -29,6 +30,8 @@ urlpatterns = patterns('',
     url(r'^sections/register/(?P<section_id>\d+)$', 'banner.views.register_for_class'),
     url(r'^sections/register/$', 'banner.views.schedule'),
     url(r'^sections/track/$', 'banner.views.track_section'),
+
+    url(r'^accounts/profile/$', 'banner.views.schedule'),
 
     # not sure if url is correct here
     url(r'^sections/(?P<pk>\d+)/$', DetailView.as_view(model=Section, template_name='sections/dvSection.html')),
