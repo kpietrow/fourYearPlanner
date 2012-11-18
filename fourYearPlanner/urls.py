@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from banner.models import Course, Section
+from banner.views import Section_Detail_View
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -10,8 +11,8 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'fourYearPlanner.views.home', name='home'),
     # url(r'^fourYearPlanner/', include('fourYearPlanner.foo.urls')),
-
-    url(r'^courses/$', ListView.as_view(model=Course,)),
+ git
+ #   url(r'^courses/$', ListView.as_view(model=Course,)),
     url(r'^courses/by_major/\d+/$', 'banner.view.courses_by_major_id'),
     url(r'^courses/by_minor/\d+/$', 'banner.view.courses_by_minor_id'),
     url(r'^courses/Sections_by_semester/\d+/$', 'banner.view.sections_by_semester'),
@@ -21,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^sections/track/$', 'banner.views.track_section'),
 
     # not sure if url is correct here
-    url(r'^sections/(?P<pk>\d+)/$', DetailView.as_view(model=Section, template_name='sections/dvSection.html')),
+    url(r'^(?P<slug>[-_\w)+)/$', Section_Detail_View.as_view(), name='article-detail'),
 
 
     # Uncomment the admin/doc line below to enable admin documentation:
