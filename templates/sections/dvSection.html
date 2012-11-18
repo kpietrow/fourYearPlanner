@@ -6,9 +6,12 @@
 
 {% block content %}
 
-<p>
-    <form class="navbar-search pull-left">
-       <input type="text" class="search-query" placeholder="Search">
-    </form>
+    <p>
+        {% for session in !course.isRestricted %}
+	        <a> {{course.id}} {{course.name}} {{section.professor}} <!-- Number of Students Enrolled --> /{{section.max_size}} {{section.semester}}
+	            <br>
+			</a>
+	    {% endfor %}
+    </p>
    
 {% endblock %}

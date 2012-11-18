@@ -2,13 +2,14 @@
 <!-- course/lvCourses.html -->
 {% extends base.html %}
 
-{% block title %}Title{% endblock %}
+{% block title %}Personalized Available Courses{% endblock %}
 
 {% block content %}
 
 <p>
-    <form class="navbar-search pull-left">
-       <input type="text" class="search-query" placeholder="Search">
-    </form>
+    {% for !course.isRestricted in ___ %}
+        <a href="___">{{course.id}} {{course.name}}</a>
+	{% endfor %}
+</p>
    
 {% endblock %}
