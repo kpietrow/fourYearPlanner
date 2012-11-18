@@ -10,6 +10,9 @@ from banner.models import Course, Section, User_Section_Track
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
+def index(request):
+    return render(request, template_name='index.html')
+
 def track_section(request, user_name, section_id):
     """Track section"""
     new_update = User_Section_Track(name=user_name, section=section_id)
