@@ -46,7 +46,14 @@ def sections_by_semester(request, semester_id):
     return response
 
 def schedule(request):
-    return HttpResponse(Section.objects.filter(user__exact=request.user))
+    return render(
+        request,
+        template_name='sections/schedule.html',
+        dictionary={
+            'sections': Section.objects.filter(user__exact=request.user),
+            'user': request.user
+        }
+    )
 
 
 def register_for_class(request, section_id):

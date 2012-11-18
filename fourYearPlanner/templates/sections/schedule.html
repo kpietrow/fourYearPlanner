@@ -6,8 +6,12 @@
 
 {% block content %}
 
-<p> {{user.first_name}} {{user.last_name}} <br>
-    User Name: {{user.user_name}} <br>
-	<!-- Student Course Listing -->
-   
+    <p> {{user.first_name}} {{user.last_name}} <br>
+        User Name: {{user.user_name}} <br>
+
+        {% for section in sections %}
+        <a href="/sections/{{ section.pk }}">{{ section.course.name }}</a>
+        {% endfor %}
+    </p>
+
 {% endblock %}
