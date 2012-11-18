@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     # url(r'^fourYearPlanner/', include('fourYearPlanner.foo.urls')),
 
     url(r'^hello/$', 'banner.views.hello'),
+    url(r'^login/$', 'django.contrib.auth.views.login'),
 
     url(r'^courses/$', ListView.as_view(model=Course)),
     url(r'^courses/by_major/(\d+)/$', 'banner.views.courses_by_major_id'),
