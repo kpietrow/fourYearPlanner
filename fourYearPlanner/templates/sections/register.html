@@ -2,13 +2,21 @@
 <!-- sections/register.html -->
 {% extends 'base.html' %}
 
-{% block title %}Title{% endblock %}
+{% block title %}Papaya: Course Registration{% endblock %}
 
 {% block content %}
 
 <p>
-    <form class="navbar-search pull-left">
-       <input type="text" class="search-query" placeholder="Search">
+    Register for a course below by entering in the course and section ID: <br>
+	
+	<form>
+        <fieldset>
+            <legend>Papaya Course Registration</legend>
+            <label>Course Entry</label>
+            <input type="text" placeholder="Enter Course To Take…">
+            <span class="help-block">Course/Section ID</span>
+            <button type="submit" class="btn">Submit</button>
+        </fieldset>
     </form>
    
 {% endblock %}
