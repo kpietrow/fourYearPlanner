@@ -33,8 +33,24 @@ def all_courses(request, major_id, minor_id):
     response = HttpResponse(response)
     return response
 
+
 def sections_by_semester(request, semester_id):
     """Look up all sections for semester"""
     response = HttpResponse(Section.objects.filter(semester_id__exact=semester_id))
     return response
 
+
+def register_for_class(request, section):
+    if request.method == 'POST':
+        form = Registration(request.POST)
+        if form.is_valid():
+            section = Section.get(pk=form.cleaned_data['section'])
+            if request.user.can_register(section):
+                request.user.add(section)
+            else:
+                return HttpResponse("ERROR")
+            return HttpResponseRedirect('/')  # Redirect after POST
+    else:
+        form = Registration(section)  # An unbound form
+
+        return render(request, 'contact.html', {'form': form})
