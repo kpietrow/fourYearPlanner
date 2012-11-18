@@ -11,10 +11,10 @@ urlpatterns = patterns('',
     # url(r'^$', 'fourYearPlanner.views.home', name='home'),
     # url(r'^fourYearPlanner/', include('fourYearPlanner.foo.urls')),
 
-    url(r'^classes/ListView/$', ListView.as_view(model=Course,)),
+    url(r'^courses/ListView/$', ListView.as_view(model=Course,)),
     url(r'^sections/Section/ListView/$', ListView.as_view(model=Session,)),
     url(r'^sections/Major_Minor/$', ListView.as_view(model=Major,), ListView.as_view(model=Minor,)),
-    url(r'^sections/Section/$', DetailView.as_view(), name='session-detail'),
+    url(r'^sections/Section/$', DetailView.as_view(), name='section-detail'),
     url(r'^sections/register/$', 'banner.views.register'),                   
     url(r'^sections/track/$', 'banner.views.track'),
     
