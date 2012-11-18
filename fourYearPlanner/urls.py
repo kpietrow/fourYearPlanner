@@ -31,6 +31,8 @@ urlpatterns = patterns('',
     url(r'^sections/register/$', 'banner.views.schedule'),
     url(r'^sections/track/$', 'banner.views.track_section'),
 
+    url(r'^accounts/profile/$', 'banner.views.schedule'),
+
     # not sure if url is correct here
     url(r'^sections/(?P<pk>\d+)/$', DetailView.as_view(model=Section, template_name='sections/dvSection.html')),
 
