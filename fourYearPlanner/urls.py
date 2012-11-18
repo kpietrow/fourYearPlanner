@@ -11,6 +11,17 @@ urlpatterns = patterns('',
     # url(r'^$', 'fourYearPlanner.views.home', name='home'),
     # url(r'^fourYearPlanner/', include('fourYearPlanner.foo.urls')),
 
+=======
+    url(r'^courses/$', ListView.as_view(model=Course,)),
+    url(r'^courses/by_major/\d+/$', 'banner.view.courses_by_major_id'),
+    url(r'^courses/by_minor/\d+/$', 'banner.view.courses_by_minor_id'),
+    url(r'^courses/Sections_by_semester/\d+/$', 'banner.view.sections_by_semester'),
+    url(r'^sections/Section/$', ListView.as_view(model=Section,)),
+    url(r'^courses/AllCourses/$', 'banner.view.all_courses'),
+    url(r'^sections/register/$', 'banner.views.register'),
+    url(r'^sections/track/$', 'banner.views.track_section'),
+
+
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     # Uncomment the next line to enable the admin:
