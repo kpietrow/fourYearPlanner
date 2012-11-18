@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.views.generic.detail import DetailView
 
 
 class Course(models.Model):
@@ -49,7 +50,7 @@ class Professor(models.Model):
 
 class Semester(models.Model):
     """Semester"""
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
 
 
 class Section(models.Model):
@@ -58,6 +59,16 @@ class Section(models.Model):
     course = models.ForeignKey(Course)
     semester = models.ForeignKey(Semester)
     professor = models.ForeignKey(Professor)
+
+class Section_Detail_View(DetailView):
+    model = Section
+    def get_context_data(self, **kwargs):
+        context = super(Section_Detail_View, self).get_context_data(**kwargs)
+        context['max_size'] = Section.max_size
+        context['course'] = Section.course
+        context['semester'] = Section.semester
+        context['professor'] = Section.professor
+        return context
 
 
 class Section_Time(models.Model):
@@ -71,5 +82,6 @@ class Section_Time(models.Model):
 
 class User_Section_Track(models.Model):
     """User tracking"""
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
+    section = models.CharField(max_length=20)
 
