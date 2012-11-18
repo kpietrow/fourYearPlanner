@@ -9,10 +9,11 @@
 	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 	    {% for degree in degrees %}
             <li><a tabindex="-1" href="#">{{degree.name}}</a></li>
-		{% endblock %}
+		{% endfor %}
 		
 		{% for requirement in degree.prereq_set %}
 		    <li><a href="requirement.id">{{requirement.name}}</a></li>
+        {% endfor %}
 		
       
     </ul>

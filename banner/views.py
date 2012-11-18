@@ -11,6 +11,7 @@ def track_section(request, user_name, section_id):
     return HttpResponse('Your course tracking has been successfully activated.')
 
 
+<<<<<<< HEAD
 def courses_by_major_id(request, major_id):
     """Look up major courses by its ID"""
     try:
@@ -20,12 +21,32 @@ def courses_by_major_id(request, major_id):
             {
                 'degree': courses,
                 'location': 'degree_reqs.html'
+=======
+def courses_major_reqs(request):
+    """Look up major courses"""
+    try:
+        courses_by_major = []
+        for major in Major.objects.all():
+            courses = []
+            for course in Course.objects.filter(major_id__exact = major.pk):
+                course.prereq = [x.course.name for x in course.major_requirement_set.all()]
+            courses.append(course)
+        courses_by_major.append(courses)
+
+        return render(
+            request,
+            template_name='course/degree_reqs.html',
+            dictionary={
+                'degree': courses_by_major,
+                'location': 'course/degree_reqs.html'
+>>>>>>> 1bd0f050a6eaed66d58212d3159801ac2c50b2af
             }
         )
     except ValueError:
         raise Http404()
 
 
+<<<<<<< HEAD
 def courses_by_minor_id(request, minor_id):
     """Look up minor courses by its ID"""
     try:
@@ -36,6 +57,25 @@ def courses_by_minor_id(request, minor_id):
             {
                 'degree': courses,
                 'location': 'degree_reqs.html'
+=======
+def courses_minor_reqs(request):
+    """Look up minor courses by its ID"""
+    try:
+        courses_by_minor = []
+        courses = []
+        for minor in Minor.objects.all():
+            courses = []
+            for course in Course.objects.filter(minor_id__exact = minor.pk):
+                course.prereq = [x.course.name for x in course.minor_requirement_set.all()]
+            courses.append(course)
+        courses_by_minor.append(courses)
+        return render(
+            request,
+            template_name='course/degree_reqs.html',
+            dictionary={
+                'degree': courses_by_minor,
+                'location': 'course/degree_reqs.html'
+>>>>>>> 1bd0f050a6eaed66d58212d3159801ac2c50b2af
             }
         )
     except ValueError:
