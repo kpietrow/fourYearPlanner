@@ -1,7 +1,6 @@
 # Create your views here.
 from banner.models import Course, Section, User_Section_Track
 from django.http import HttpResponse, HttpResponseRedirect
-from banner.forms import Registration
 from django.shortcuts import render
 
 
