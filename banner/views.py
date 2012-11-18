@@ -13,12 +13,15 @@ def register(request, course_id, semester_id, professor):
             professor=professor_id
             )
 
-
+def hello(request):
+    """Test"""
+    print 'Hello World!'
 
 def track_section(request, user_name, section_id):
     """Track section"""
     new_update = User_Section_Track(name=user_name, section=section_id)
     new_update.save()
+    return HttpResponse
 
 
 def courses_by_major_id(request, major_id):

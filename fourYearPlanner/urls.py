@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
+from django.conf.urls.defaults import *
 from django.views.generic import ListView, DetailView
 from banner.models import Course, Section
+from banner.views import hello, courses_by_major_id, courses_by_minor_id, sections_by_semester, all_courses, track_section
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -11,12 +13,14 @@ urlpatterns = patterns('',
     # url(r'^$', 'fourYearPlanner.views.home', name='home'),
     # url(r'^fourYearPlanner/', include('fourYearPlanner.foo.urls')),
 
+    url(r'^hello/$', 'banner.view.hello'),
+
     url(r'^courses/$', ListView.as_view(model=Course)),
-    url(r'^courses/by_major/\d+/$', 'banner.view.courses_by_major_id'),
-    url(r'^courses/by_minor/\d+/$', 'banner.view.courses_by_minor_id'),
-    url(r'^courses/Sections_by_semester/\d+/$', 'banner.view.sections_by_semester'),
+    url(r'^courses/by_major/\d+/$', 'banner.views.courses_by_major_id'),
+    url(r'^courses/by_minor/\d+/$', 'banner.views.courses_by_minor_id'),
+    url(r'^courses/Sections_by_semester/\d+/$', 'banner.views.sections_by_semester'),
     url(r'^sections/Section/$', ListView.as_view(model=Section,)),
-    url(r'^courses/AllCourses/$', 'banner.view.all_courses'),
+    url(r'^courses/AllCourses/$', 'banner.views.all_courses'),
     url(r'^sections/register/$', 'banner.views.register'),
     url(r'^sections/track/$', 'banner.views.track_section'),
 
