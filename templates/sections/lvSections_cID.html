@@ -6,9 +6,12 @@
 
 {% block content %}
 
-<p>
-    <form class="navbar-search pull-left">
-       <input type="text" class="search-query" placeholder="Search">
-    </form>
-   
+    <p>
+	    {% for section_time in !course.isRestricted %}
+		    <a>{{course.section.id}} {{course.section.name}} {{section.professor}} {{section_time.dayOfWeek}} {{section_time.startTime}} - {{section_time.endTime}}
+                <br>
+			</a>
+		{% endfor %}
+	</p>
+	
 {% endblock %}
