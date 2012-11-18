@@ -1,21 +1,14 @@
-# Create your views here.
 from banner.models import Course, Section, Major, Minor, Professor, User_Section_Track
 from django.http import HttpResponse, Http404
 from django.views.generic import ListView
 
-#def register(request, course_id, semester_id, professor):
-#    """Register for a class"""
-#    if 
-#        new_course = Section.objects.get(id=1)
-#        e = new_course=entry_set.create(
-#            course=course_is,
-#            semester=semester_id
-#            professor=professor_id
-#            )
 
 def hello(request):
     """Test"""
     return HttpResponse('Hello World!')
+from banner.models import Course, Section, User_Section_Track
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 
 def track_section(request, user_name, section_id):
     """Track section"""
@@ -38,6 +31,7 @@ def courses_by_minor_id(request, minor_id):
     response = HttpResponse(Course.objects.filter(minor_id__exact=minor_id))
     return response
 
+
 def all_courses(request, major_id, minor_id):
     """Look up all courses for major and minor"""
     response = Course.objects.filter(minor_id__exact=minor_id) + Course.objects.filter(major_id__exact=major_id)
@@ -45,8 +39,22 @@ def all_courses(request, major_id, minor_id):
     response = HttpResponse(response)
     return response
 
+
 def sections_by_semester(request, semester_id):
     """Look up all sections for semester"""
     response = HttpResponse(Section.objects.filter(semester_id__exact=semester_id))
     return response
 
+def schedule(request):
+    return HttpResponse(Section.objects.filter(user__exact=request.user))
+
+
+def register_for_class(request, section_id):
+    #return HttpResponse([f + '\n' for f in dir(request.user)])
+    section = Section.objects.get(pk=section_id)
+    if request.user.can_register(section):
+        request.user.section_set.add(section)
+        request.user.save()
+    else:
+        return HttpResponse("ERROR")
+    return HttpResponseRedirect('/')  # Redirect after POST
