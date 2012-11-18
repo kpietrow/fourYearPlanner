@@ -1,14 +1,7 @@
-from banner.models import Course, Section, Major, Minor, Professor, User_Section_Track
-from django.http import HttpResponse, Http404
-from django.views.generic import ListView
-
-
-def hello(request):
-    """Test"""
-    return HttpResponse('Hello World!')
 from banner.models import Course, Section, User_Section_Track
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
+
 
 def index(request):
     return render(request, template_name='index.html')
@@ -23,16 +16,36 @@ def track_section(request, user_name, section_id):
 def courses_by_major_id(request, major_id):
     """Look up major courses by its ID"""
     try:
-        response = HttpResponse(Course.objects.filter(major_id__exact=major_id))
-        return response
+        courses = Course.objects.filter(major_id__exact=major_id)
+        courses.prereq = [x.name for x in courses.prerequisite_set]
+        return render(
+            request,
+            template_name='sections/degree_reqs.html',
+            dictionary={
+                'degree': courses,
+                'location': 'degree_reqs.html'
+            }
+        )
     except ValueError:
         raise Http404()
 
 
 def courses_by_minor_id(request, minor_id):
     """Look up minor courses by its ID"""
-    response = HttpResponse(Course.objects.filter(minor_id__exact=minor_id))
-    return response
+    try:
+        courses = Course.objects.filter(minor_id__exact=minor_id)
+        for course in courses:
+            courses.prereqs = [x.name for x in courses.prerequisite_set]
+        return render(
+            request,
+            template_name='sections/degree_reqs.html',
+            dictionary={
+                'degree': courses,
+                'location': 'degree_reqs.html'
+            }
+        )
+    except ValueError:
+        raise Http404()
 
 
 def all_courses(request, major_id, minor_id):
