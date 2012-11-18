@@ -1,12 +1,12 @@
 # Create your views here.
-from banner.models import Course, Section, Major, Minor, Professor, User_Section_Track
-from django.http import HttpResponse
-from django.views.generic import ListView
+from banner.models import Course, Section, User_Section_Track
+from django.http import HttpResponse, HttpResponseRedirect
+from banner.forms import Registration
+from django.shortcuts import render
+
 
 def register(request, course_id, section_id):
     """Register for a class"""
-
-
 
 
 def track_section(request, user_name, section_id):
@@ -25,6 +25,7 @@ def courses_by_minor_id(request, minor_id):
     """Look up minor courses by its ID"""
     response = HttpResponse(Course.objects.filter(minor_id__exact=minor_id))
     return response
+
 
 def all_courses(request, major_id, minor_id):
     """Look up all courses for major and minor"""
